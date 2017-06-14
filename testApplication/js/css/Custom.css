@@ -1,0 +1,23 @@
+﻿.center {
+    text-align:center;
+}
+
+.center_page{
+    width:308px;
+    height:288px;
+    position: absolute;
+
+    top: 0;
+    bottom:272px;
+    left:0;
+    right:1127px;
+
+    margin:auto;
+    
+}
+
+.space{
+    margin-top:20px;
+}
+
+
