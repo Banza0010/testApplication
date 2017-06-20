@@ -99,6 +99,7 @@
       <DependentUpon>Database1.mdf</DependentUpon>
     </Content>
     <Content Include="js\css\Custom.css" />
+    <Content Include="js\css\StyleSheet1.css" />
     <Content Include="packages.config" />
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
