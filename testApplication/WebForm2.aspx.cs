@@ -46,7 +46,7 @@ namespace testApplication
             }
             else
             {
-                lblMessage.Text = "informatio is required in all fields";
+                lblMessage.Text = "information is required in all fields";
                 lblMessage.ForeColor = System.Drawing.Color.Red;
             }
 

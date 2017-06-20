@@ -48,9 +48,8 @@ namespace testApplication
             string CS = ConfigurationManager.ConnectionStrings["DBCS"].ConnectionString;
             using (SqlConnection con = new SqlConnection(CS))
             {
-                SqlCommand cmd = new SqlCommand
-                    ("Delete from Users where Id = @Id", con);
-                SqlParameter param = new SqlParameter("@EmployeeId", userId);
+                SqlCommand cmd = new SqlCommand("Delete from Users where Id = @Id", con);
+                SqlParameter param = new SqlParameter("@Id", userId);
                 cmd.Parameters.Add(param);
                 con.Open();
                 cmd.ExecuteNonQuery();
@@ -62,8 +61,7 @@ namespace testApplication
             string CS = ConfigurationManager.ConnectionStrings["DBCS"].ConnectionString;
             using (SqlConnection con = new SqlConnection(CS))
             {
-                string updateQuery = "Update Users SET Username = @Username,  " + 
-                    "Password = @Password, Email = @Email, Name = @Name WHERE Id = @Id";
+                string updateQuery = "Update Users SET Username = @Username, Password = @Password, Email = @Email, Name = @Name WHERE Id = @Id";
                 SqlCommand cmd = new SqlCommand(updateQuery, con);
 
                 SqlParameter paramUserId = new  SqlParameter("@Id", userId);
@@ -83,6 +81,22 @@ namespace testApplication
 
                 con.Open();
                 return cmd.ExecuteNonQuery();
+
+                /*
+               Label id=GridView1.Rows[e.RowIndex].FindControl("lbl_ID") as Label;  
+        TextBox name = GridView1.Rows[e.RowIndex].FindControl("txt_Name") as TextBox;  
+        TextBox city = GridView1.Rows[e.RowIndex].FindControl("txt_City") as TextBox;  
+        con = new SqlConnection(cs);  
+        con.Open();  
+        //updating the record  
+        SqlCommand cmd = new SqlCommand("Update tbl_Employee set Name='"+name.Text+"',City='"+city.Text+"' where ID="+Convert.ToInt32(id.Text),con);  
+        cmd.ExecuteNonQuery();  
+        con.Close();  
+        //Setting the EditIndex property to -1 to cancel the Edit mode in Gridview  
+        GridView1.EditIndex = -1;  
+        //Call ShowData method for displaying updated data  
+        ShowData();     
+             */
             }
         }
     }

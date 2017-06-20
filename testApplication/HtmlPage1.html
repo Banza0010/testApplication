@@ -1,28 +1,144 @@
-﻿<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>Bootstrap 101 Template</title>
-
-    <!-- Bootstrap -->
-    <link href="js/css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
-</head>
-<body>
-    <h1>Hello, world!</h1>
-
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="js/js/bootstrap.min.js"></script>
-</body>
-</html>
+﻿<div style="font-family: Arial">
+    <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False"
+                  DataKeyNames="EmployeeId" DataSourceID="SqlDataSource1"
+                  ShowFooter="True" BackColor="#DEBA84" BorderColor="#DEBA84"
+                  BorderStyle="None" BorderWidth="1px" CellPadding="3"
+                  CellSpacing="2">
+        <Columns>
+            <asp:CommandField ShowDeleteButton="True" ShowEditButton="True" />
+            <asp:TemplateField HeaderText="EmployeeId" InsertVisible="False"
+                               SortExpression="EmployeeId">
+                <EditItemTemplate>
+                    <asp:Label ID="Label1" runat="server"
+                               Text='<%# Eval("EmployeeId") %>'>
+                    </asp:Label>
+                </EditItemTemplate>
+                <ItemTemplate>
+                    <asp:Label ID="Label1" runat="server"
+                               Text='<%# Bind("EmployeeId") %>'>
+                    </asp:Label>
+                </ItemTemplate>
+                <FooterTemplate>
+                    <asp:LinkButton ID="lbInsert" ValidationGroup="Insert"
+                                    runat="server" OnClick="lbInsert_Click">
+                        Insert
+                    </asp:LinkButton>
+                </FooterTemplate>
+            </asp:TemplateField>
+            <asp:TemplateField HeaderText="Name" SortExpression="Name">
+                <EditItemTemplate>
+                    <asp:TextBox ID="TextBox1" runat="server"
+                                 Text='<%# Bind("Name") %>'>
+                    </asp:TextBox>
+                    <asp:RequiredFieldValidator ID="rfvEditName" runat="server"
+                                                ErrorMessage="Name is a required field"
+                                                ControlToValidate="TextBox1" Text="*" ForeColor="Red">
+                    </asp:RequiredFieldValidator>
+                </EditItemTemplate>
+                <ItemTemplate>
+                    <asp:Label ID="Label2" runat="server"
+                               Text='<%# Bind("Name") %>'>
+                    </asp:Label>
+                </ItemTemplate>
+                <FooterTemplate>
+                    <asp:TextBox ID="txtName" runat="server"></asp:TextBox>
+                    <asp:RequiredFieldValidator ID="rfvInsertName" runat="server"
+                                                ErrorMessage="Name is a required field"
+                                                ControlToValidate="txtName" Text="*" ForeColor="Red"
+                                                ValidationGroup="Insert">
+                    </asp:RequiredFieldValidator>
+                </FooterTemplate>
+            </asp:TemplateField>
+            <asp:TemplateField HeaderText="Gender" SortExpression="Gender">
+                <EditItemTemplate>
+                    <asp:DropDownList ID="DropDownList1" runat="server"
+                                      SelectedValue='<%# Bind("Gender") %>'>
+                        <asp:ListItem>Select Gender</asp:ListItem>
+                        <asp:ListItem>Male</asp:ListItem>
+                        <asp:ListItem>Female</asp:ListItem>
+                    </asp:DropDownList>
+                    <asp:RequiredFieldValidator ID="rfvEditGender" runat="server"
+                                                ErrorMessage="Gender is a required field" Text="*"
+                                                ControlToValidate="DropDownList1" ForeColor="Red"
+                                                InitialValue="Select Gender">
+                    </asp:RequiredFieldValidator>
+                </EditItemTemplate>
+                <ItemTemplate>
+                    <asp:Label ID="Label3" runat="server"
+                               Text='<%# Bind("Gender") %>'>
+                    </asp:Label>
+                </ItemTemplate>
+                <FooterTemplate>
+                    <asp:DropDownList ID="ddlInsertGender" runat="server">
+                        <asp:ListItem>Select Gender</asp:ListItem>
+                        <asp:ListItem>Male</asp:ListItem>
+                        <asp:ListItem>Female</asp:ListItem>
+                    </asp:DropDownList>
+                    <asp:RequiredFieldValidator ID="rfvInsertGender" runat="server"
+                                                ErrorMessage="Gender is a required field" Text="*"
+                                                ControlToValidate="ddlInsertGender" ForeColor="Red"
+                                                InitialValue="Select Gender" ValidationGroup="Insert">
+                    </asp:RequiredFieldValidator>
+                </FooterTemplate>
+            </asp:TemplateField>
+            <asp:TemplateField HeaderText="City" SortExpression="City">
+                <EditItemTemplate>
+                    <asp:TextBox ID="TextBox3" runat="server"
+                                 Text='<%# Bind("City") %>'></asp:TextBox>
+                    <asp:RequiredFieldValidator ID="rfvEditCity" runat="server"
+                                                ErrorMessage="City is a required field" Text="*"
+                                                ControlToValidate="TextBox3" ForeColor="Red">
+                    </asp:RequiredFieldValidator>
+                </EditItemTemplate>
+                <ItemTemplate>
+                    <asp:Label ID="Label4" runat="server"
+                               Text='<%# Bind("City") %>'></asp:Label>
+                </ItemTemplate>
+                <FooterTemplate>
+                    <asp:TextBox ID="txtCity" runat="server"></asp:TextBox>
+                    <asp:RequiredFieldValidator ID="rfvInsertCity" runat="server"
+                                                ErrorMessage="City is a required field" Text="*"
+                                                ControlToValidate="txtCity" ForeColor="Red"
+                                                ValidationGroup="Insert">
+                    </asp:RequiredFieldValidator>
+                </FooterTemplate>
+            </asp:TemplateField>
+        </Columns>
+        <FooterStyle BackColor="#F7DFB5" ForeColor="#8C4510" />
+        <HeaderStyle BackColor="#A55129" Font-Bold="True" ForeColor="White" />
+        <PagerStyle ForeColor="#8C4510" HorizontalAlign="Center" />
+        <RowStyle BackColor="#FFF7E7" ForeColor="#8C4510" />
+        <SelectedRowStyle BackColor="#738A9C" Font-Bold="True" ForeColor="White" />
+        <SortedAscendingCellStyle BackColor="#FFF1D4" />
+        <SortedAscendingHeaderStyle BackColor="#B95C30" />
+        <SortedDescendingCellStyle BackColor="#F1E5CE" />
+        <SortedDescendingHeaderStyle BackColor="#93451F" />
+    </asp:GridView>
+    <asp:ValidationSummary ID="ValidationSummary1" ValidationGroup="Insert"
+                           ForeColor="Red" runat="server" />
+    <asp:ValidationSummary ID="ValidationSummary2" ForeColor="Red"
+                           runat="server" />
+    <asp:SqlDataSource ID="SqlDataSource1" runat="server"
+                       ConnectionString="<%$ ConnectionStrings:SampleConnectionString %>"
+                       DeleteCommand="DELETE FROM [tblEmployee] WHERE [EmployeeId] = @EmployeeId"
+                       InsertCommand="INSERT INTO [tblEmployee] ([Name], [Gender], [City])
+        VALUES (@Name, @Gender, @City)"
+                       SelectCommand="SELECT * FROM [tblEmployee]"
+                       UpdateCommand="UPDATE [tblEmployee] SET [Name] = @Name, [Gender] = @Gender,
+        [City] = @City WHERE [EmployeeId] = @EmployeeId">
+        <DeleteParameters>
+            <asp:Parameter Name="EmployeeId" Type="Int32" />
+        </DeleteParameters>
+        <InsertParameters>
+            <asp:Parameter Name="Name" Type="String" />
+            <asp:Parameter Name="Gender" Type="String" />
+            <asp:Parameter Name="City" Type="String" />
+        </InsertParameters>
+        <UpdateParameters>
+            <asp:Parameter Name="Name" Type="String" />
+            <asp:Parameter Name="Gender" Type="String" />
+            <asp:Parameter Name="City" Type="String" />
+            <asp:Parameter Name="EmployeeId" Type="Int32" />
+        </UpdateParameters>
+    </asp:SqlDataSource>
+</div>
